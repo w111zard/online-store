@@ -5,5 +5,7 @@ const typeController = require('../controllers/typeController');
 
 router.post('/', typeController.create);
 router.get('/', typeController.getAll);
+router.get('/:id', typeController.getOne);
+router.delete('/:id', typeController.deleteByID);
 
 module.exports = router;
