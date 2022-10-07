@@ -1,11 +1,12 @@
 const ApiError = require('../error/apiError');
-const deviceService = require('../services/brandService');
+const deviceService = require('../services/deviceService');
 
 class DeviceController {
     async create(req, res, next) {
         try {
-            const {name} = req.body;
-            const item = await deviceService.create(name);
+            const deviceData = req.body;
+            deviceData.image = req.files.image;
+            const item = await deviceService.create(deviceData);
             return res.json(item);
         } catch (error) {
             return next(ApiError.badRequest(error));

@@ -4,8 +4,7 @@ const brandService = require('../services/brandService');
 class BrandController {
     async create(req, res, next) {
         try {
-            const {name} = req.body;
-            const item = await brandService.create(name);
+            const item = await brandService.create(req.body.name);
             return res.json(item);
         } catch (error) {
             return next(ApiError.badRequest(error));

@@ -1,11 +1,10 @@
 const ApiError = require('../error/apiError');
-const typeService = require('../services/brandService');
+const typeService = require('../services/typeService');
 
 class TypeController {
     async create(req, res, next) {
         try {
-            const {name} = req.body;
-            const item = await typeService.create(name);
+            const item = await typeService.create(req.body.name);
             return res.json(item);
         } catch (error) {
             return next(ApiError.badRequest(error));

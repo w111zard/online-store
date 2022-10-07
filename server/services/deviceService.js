@@ -1,8 +1,17 @@
 const {Device} = require('../models/models');
+const fileService = require('../services/fileService');
 
 class DeviceService {
-    async create(name) {
-        return await Device.create({name});
+    async create(deviceData) {
+        const imageFileName = fileService.save(deviceData.image);
+
+        return await Device.create({
+            name: deviceData.name,
+            price: deviceData.price,
+            image: imageFileName,
+            typeId: deviceData.typeId,
+            brandId: deviceData.brandId
+        });
     }
 
     async getAll() {
